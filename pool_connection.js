@@ -5,8 +5,8 @@ var app       =    express();
 var pool      =    mysql.createPool({
     connectionLimit : 100, //important
     host     : 'localhost',
-    user     : 'root',
-    password : 'root',
+    user     : 'mmurillo',
+    password : 'mmurillo',
     database : 'ecomdb',
     debug    :  false
 });
@@ -15,6 +15,7 @@ function handle_database(req,res,listName) {
     
     pool.getConnection(function(err,connection){
         if (err) {
+            console.log(connection);
           res.json({"code" : 100, "status" : "Error in connection database"});
           return;
         }
@@ -58,4 +59,5 @@ app.get("/cartList",function(req,res){-
         handle_database(req,res,"cart");
 });
 
+console.log("holis");
 app.listen(3000);
